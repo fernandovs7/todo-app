@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "app/styles/custom.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Quicksand", sans-serif;
+
+  display: block;
+  height: 100vh;
+  padding: toREM(40);
+}
+
+h1 {
+  font-size: 2rem;
+  @include respond-to(medium) {
+    font-size: toREM(48);
+  }
+}
+
+.bg-theme-light {
+  background: hsla(288, 20%, 75%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(288, 20%, 75%, 1) 0%,
+    hsla(197, 65%, 42%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(288, 20%, 75%, 1) 0%,
+    hsla(197, 65%, 42%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(288, 20%, 75%, 1) 0%,
+    hsla(197, 65%, 42%, 1) 100%
+  );
+
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#C7B3CC", endColorstr="#268AB2", GradientType=1 );
+}
+
+.bg-theme-dark {
+  background: hsla(205, 46%, 10%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(205, 46%, 10%, 1) 0%,
+    hsla(191, 28%, 23%, 1) 50%,
+    hsla(207, 41%, 27%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(205, 46%, 10%, 1) 0%,
+    hsla(191, 28%, 23%, 1) 50%,
+    hsla(207, 41%, 27%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(205, 46%, 10%, 1) 0%,
+    hsla(191, 28%, 23%, 1) 50%,
+    hsla(207, 41%, 27%, 1) 100%
+  );
+
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#0E1C26", endColorstr="#2A454B", GradientType=1 );
+}

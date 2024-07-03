@@ -1,0 +1,17 @@
+// src/styles/_mixins.scss
+
+
+// This mixin will allow us to easily change the font size of an element based on the screen size.
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: 600px) { @content; }
+  }
+  @else if $breakpoint == medium {
+    @media (min-width: 900px) { @content; }
+  }
+  @else if $breakpoint == large {
+    @media (min-width: 1200px) { @content; }
+  }
+}
+
+

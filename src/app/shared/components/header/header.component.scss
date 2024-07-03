@@ -1,0 +1,15 @@
+@import '../../../styles/custom.scss';
+
+.header {
+  &__container {
+    .app-logo {
+      font-size: toREM(40);
+    }
+    .dark-mode__container {
+      .bi {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
