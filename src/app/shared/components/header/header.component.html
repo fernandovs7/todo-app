@@ -1,20 +1,21 @@
 <div class="header__container flex items-center gap-3">
-  <i class="bi bi-clipboard-check app-logo"></i>
-  <h1 class="text-white font-bold">TO-DO APP</h1>
+  <i class="bi bi-clipboard-check app-logo text-white dark:text-gray-300"></i>
+  <h1 class="text-white dark:text-gray-200 font-bold">TO-DO APP</h1>
   <div class="dark-mode__container ms-auto self-start relative inline-block" (click)="toggleMenu()" #menuContainer>
-    <i *ngIf="currentTheme === 'dark'" class="bi bi-moon-stars-fill text-[#eab308] text-lg"></i>
-    <i *ngIf="currentTheme !== 'dark'" class="bi bi-brightness-high-fill text-white text-lg"></i>
+    <i *ngIf="currentTheme === 'dark'" class="bi bi-moon-stars-fill text-blue-400 text-lg"></i>
+    <i *ngIf="currentTheme !== 'dark'" class="bi bi-brightness-high-fill text-[#eab308] text-lg"></i>
     <div
-      class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 transform opacity-0 scale-95"
+      class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 transform opacity-0 scale-95"
       [ngClass]="{ 'opacity-100 scale-100': dropDownOpen, 'opacity-0 scale-95': !dropDownOpen }" role="menu"
       aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
       <div class="py-1" role="none">
-        <a (click)="themeChange('dark')" href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-0">
-          <i class="bi bi-moon-stars text-lg not-italic"><span class="pl-2">Dark</span></i>
-        </a>
-        <a (click)="themeChange('light')" href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1"
-          id="menu-item-1">
+        <a (click)="themeChange('light')" href="#" class="text-gray-700 dark:text-gray-200 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-slate-700"
+          role="menuitem" tabindex="-1" id="menu-item-1">
           <i class="bi bi-brightness-high text-lg not-italic"><span class="pl-2">Light</span></i>
+        </a>
+        <a (click)="themeChange('dark')" href="#" class="text-gray-700 dark:text-gray-200 block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-slate-700"
+          role="menuitem" tabindex="-1" id="menu-item-0">
+          <i class="bi bi-moon-stars text-lg not-italic"><span class="pl-2">Dark</span></i>
         </a>
       </div>
     </div>
