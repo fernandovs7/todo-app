@@ -12,6 +12,7 @@ html {
   display: block;
   height: 100vh;
   padding: toREM(40);
+  color: rgb(55, 65, 81);
 }
 
 h1 {
@@ -21,7 +22,7 @@ h1 {
   }
 }
 
-.bg-theme-light {
+.theme-light {
   background: hsla(288, 20%, 75%, 1);
 
   background: linear-gradient(
@@ -45,7 +46,7 @@ h1 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#C7B3CC", endColorstr="#268AB2", GradientType=1 );
 }
 
-.bg-theme-dark {
+.theme-dark {
   background: hsla(205, 46%, 10%, 1);
 
   background: linear-gradient(

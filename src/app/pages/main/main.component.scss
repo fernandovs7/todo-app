@@ -1,2 +1,28 @@
 @import "../../styles/custom.scss";
 
+button:disabled {
+  i {
+    color: #cbd5e1 !important;
+  }
+}
+
+.todo {
+
+  &__input {
+    width: toREM(145);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    &:focus {
+      width: toREM(300);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      outline: none;
+    }
+  }
+
+  &__item {
+    &:not(last-child) {
+      margin-bottom: toREM(15);
+    }
+  }
+}
