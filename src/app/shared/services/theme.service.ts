@@ -43,7 +43,6 @@ export class ThemeService {
 
 
   loadTheme(): void {
-    console.log('loadTheme');
     const storedTheme = this.getTheme();
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 

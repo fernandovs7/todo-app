@@ -1,0 +1,36 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Cook dinner",
+      "completed": false,
+      "category": "Home",
+      "dueDate": "2021-12-31",
+      "notes": "Make sure to buy groceries"
+    },
+    {
+      "id": "2",
+      "title": "Buy groceries",
+      "completed": false,
+      "category": "Home",
+      "dueDate": "2021-12-31",
+      "notes": "Milk, eggs, bread"
+    },
+    {
+      "id": "3",
+      "title": "Finish project",
+      "completed": false,
+      "category": "Work",
+      "dueDate": "2021-12-31",
+      "notes": "Don't forget to test"
+    },
+    {
+      "id": "f329",
+      "title": "Read book",
+      "completed": false,
+      "category": "",
+      "dudate": "",
+      "notes": ""
+    }
+  ]
+}

@@ -6,18 +6,29 @@ button:disabled {
   }
 }
 
-.todo {
+.main__container {
+  max-width: toREM(1450);
+}
 
+.todo {
   &__input {
-    width: toREM(145);
+    width: toREM(215);
     transition: all 0.3s ease;
     border: 1px solid transparent;
-    &:focus {
-      width: toREM(300);
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
-      outline: none;
-    }
+  }
+
+  &__complete-btn {
+    width: toREM(24);
+    height: toREM(24);
+    border: 1px solid #e2e8f0;
+    border-radius: toREM(50);
+    top: toREM(13);
+    right: toREM(16);
+    z-index: 3;
+  }
+
+  &__pending--container {
+    max-height: toREM(50);
   }
 
   &__item {
@@ -25,4 +36,11 @@ button:disabled {
       margin-bottom: toREM(15);
     }
   }
+}
+
+.inputAnimation {
+  width: toREM(300);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  outline: none;
 }

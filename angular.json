@@ -30,7 +30,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets/"
             ],
             "styles": [
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
