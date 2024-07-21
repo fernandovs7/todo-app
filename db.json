@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Cook dinner",
-      "completed": false,
+      "completed": true,
       "category": "Home",
       "dueDate": "2021-12-31",
       "notes": "Make sure to buy groceries"
@@ -11,7 +11,7 @@
     {
       "id": "2",
       "title": "Buy groceries",
-      "completed": false,
+      "completed": true,
       "category": "Home",
       "dueDate": "2021-12-31",
       "notes": "Milk, eggs, bread"
@@ -28,6 +28,22 @@
       "id": "f329",
       "title": "Read book",
       "completed": false,
+      "category": "",
+      "dudate": "",
+      "notes": ""
+    },
+    {
+      "id": "751b",
+      "title": "Call Amura",
+      "completed": false,
+      "category": "",
+      "dudate": "",
+      "notes": ""
+    },
+    {
+      "id": "255a",
+      "title": "Clean the house",
+      "completed": true,
       "category": "",
       "dudate": "",
       "notes": ""

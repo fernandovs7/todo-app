@@ -1,7 +1,7 @@
 <div class="main__container pt-10">
   <div class="todo__new-input flex items-center gap-3 mb-20">
-    <input appCapitalizeFirstLetter type="text" (keyup.enter)="addTodo()" (focus)="onInputFocus()" (blur)="onInputBlur()" [ngClass]="{'inputAnimation': isFocused}"
-      [(ngModel)]="taskText"
+    <input appCapitalizeFirstLetter type="text" (keyup.enter)="addTodo()" (focus)="onInputFocus()"
+      (blur)="onInputBlur()" [ngClass]="{'inputAnimation': isFocused}" [(ngModel)]="taskText"
       class="todo__input focus:outline-none w-1/4 rounded-md py-2 px-3 font-medium dark:bg-slate-800 dark:text-gray-400"
       placeholder="Add a new task" #todoInput>
     <button [disabled]="isInputEmpty()" class="todo__add-btn" (click)="addTodo()">
@@ -11,7 +11,6 @@
 
   <!-- Not completed tasks -->
   <div class="todo__boxes__container flex gap-20">
-
     <div class="todo__all w-1/2">
       <div class="flex items-center mb-4 gap-3">
         <h2 class="text-white dark:text-gray-200 font-semibold text-3xl pb-1">Pending taks</h2>
@@ -19,26 +18,24 @@
       </div>
       <hr class="w-3/4 mb-6">
       <div class="todo-all__container min-h-64 drop-shadow-xl rounded-xl p-3 bg-white dark:bg-slate-800">
-        @for (todo of todos(); let i = $index; track $index) {
+        @for (todo of pendingTodos(); let i = $index; track todo.id) {
         <div class="todo__item w-100 rounded-md flex bg-neutral-100 dark:bg-sky-900 drop-shadow-md relative">
           <div class="todo__pending--indicator bg-orange-500 w-2 rounded-l-xl"> </div>
           <div
             class="todo__pending--container w-full flex justify-between items-center px-2 py-2 font-medium dark:text-gray-400">
             <div class="todo__pending--text">{{ todo.title }}</div>
             <div class="checked-icon" #checkedIcon>
-              <app-checked-icon class="relative z-10" [id]="'checked-icon-app-' + i"
-                (click)="markAsChecked($event, i, todo.id)" />
+              <app-checked-icon class="relative z-10" [id]="'checked-icon-app-' + todo.id"
+                (click)="markAsChecked($event, todo.id)" />
               <div class="todo__complete-btn shadow-inner bg-white dark:bg-gray-300 absolute z-0"
-                [ngClass]="'todo__complete-btn--' + i">
+                [ngClass]="'todo__complete-btn--' + todo.id">
               </div>
             </div>
           </div>
         </div>
         }
       </div>
-
     </div>
-
 
     <!-- Completed tasks -->
     <div class="todo__completed w-1/2">
@@ -48,12 +45,14 @@
       </div>
       <hr class="w-3/4 mb-6">
       <div class="todo__completed__container min-h-64 drop-shadow-xl rounded-xl p-3 bg-white dark:bg-slate-800">
+        @for (todo of completedTodos(); track todo.id) {
         <div class="todo__item w-100 rounded-md flex bg-neutral-100 dark:bg-sky-900 drop-shadow-md">
           <div class="todo__pending--indicator bg-green-600 w-2 rounded-l-xl"> </div>
           <div class="todo__pending--text px-2 py-2 font-medium dark:text-gray-400">
-            Trabajar en el proyecto de angular
+            {{ todo.title }}
           </div>
         </div>
+        }
       </div>
     </div>
   </div>

@@ -23,8 +23,6 @@ import { CapitalizeFirstLetterDirective } from '../../shared/directives/capitali
 })
 export class MainComponent implements OnInit {
 
-  private animationItem: AnimationItem | undefined;
-
   private todoService = inject(TodosService);
 
   @ViewChild('todoInput') todoInput!: ElementRef;
@@ -33,34 +31,46 @@ export class MainComponent implements OnInit {
 
   taskText: string = '';
 
-  todos: WritableSignal<Todo[]> = signal<Todo[]>([]);
+  pendingTodos: WritableSignal<Todo[]> = signal<Todo[]>([]);
+
+  completedTodos: WritableSignal<Todo[]> = signal<Todo[]>([]);
 
   ngOnInit(): void {
-    this.todoService.getTodos().subscribe((todos) => {
-      this.todos.set(todos);
+    this.todoService.getPendingTodos().subscribe((todos) => {
+      this.pendingTodos.set(todos);
+    });
+
+    this.todoService.getCompletedTodos().subscribe((completedTodos) => {
+      this.completedTodos.set(completedTodos);
     });
   }
 
   addTodo(): void {
     if (this.isInputEmpty()) return;
-    this.todoService.addTodo(this.taskText).subscribe((todo) => {
-      this.todos.update((prevTodos) => {
-        return [...prevTodos, todo];
-      });
-    });
+    this.todoService.addTodo(this.taskText).subscribe((todo) => { });
     this.taskText = '';
     this.todoInput.nativeElement.blur();
   }
+
+  markAsCompleted(todoId: string): void {
+    this.todoService.getTodoById(todoId).subscribe((todo) => {
+      todo.completed = true;
+      this.todoService.updateTodo(todo).subscribe((updatedTodo) => {
+        console.log('Todo updated:', updatedTodo);
+      });
+    });
+  }
+
 
   // Check if the input is empty or only contains spaces
   isInputEmpty(): boolean {
     return this.taskText.trim() === '';
   }
 
-  markAsChecked(e: Event, i: number, todoId: string): void {
-    const completeBtnEl = document.querySelector(`.todo__complete-btn--${i}`);
+  markAsChecked(e: Event, todoId: string): void {
+    const completeBtnEl = document.querySelector(`.todo__complete-btn--${todoId}`);
     completeBtnEl?.classList.add('hidden');
-    console.log(todoId);
+    this.markAsCompleted(todoId);
   }
 
   onInputFocus(): void {

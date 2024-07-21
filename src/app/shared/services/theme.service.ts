@@ -1,5 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,19 +6,16 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class ThemeService {
 
   private themeKey = 'theme';
-  private themeSubject = new BehaviorSubject<'light' | 'dark'>('light');
   private themeSignal = signal<'light' | 'dark'>('light');
 
   constructor() {
-    const storedTheme = localStorage.getItem(this.themeKey) as 'light' | 'dark' || 'light';
-    this.themeSubject = new BehaviorSubject<'light' | 'dark'>(storedTheme);    
-    this.applyTheme(storedTheme);
   }
 
   setTheme(theme: 'light' | 'dark'): void {
     localStorage.setItem(this.themeKey, theme);
-    this.themeSubject.next(theme);
+    this.themeSignal.set(theme);
     this.applyTheme(theme);
+    this.loadBgImage(theme);
   }
 
   applyTheme(theme: 'light' | 'dark'): void {
@@ -27,12 +23,14 @@ export class ThemeService {
     document.documentElement.classList.add(theme);
   }
 
-  getTheme(): Observable<'light' | 'dark'> {
-    return this.themeSubject.asObservable();
+  getTheme() {
+    const storedTheme = localStorage.getItem(this.themeKey) as 'light' | 'dark' || 'light';
+    this.themeSignal.set(storedTheme);
+    return this.themeSignal();
   }
 
   loadBgImage(theme: 'light' | 'dark'): void {
-    if ( theme === 'light') {
+    if (theme === 'light') {
       document.body.classList.remove('theme-dark', 'theme-light');
       document.body.classList.add('theme-light');
     } else {
@@ -43,7 +41,8 @@ export class ThemeService {
 
 
   loadTheme(): void {
-    const storedTheme = this.getTheme();
+    this.getTheme();
+    const storedTheme = this.themeSignal()
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     const applyPreferedTheme = (event: MediaQueryListEvent): void => {
@@ -51,13 +50,11 @@ export class ThemeService {
     }
 
     if (storedTheme) {
-      storedTheme.subscribe(theme => {
-        this.applyTheme(theme);
-        this.loadBgImage(theme);
-      });
+      this.applyTheme(storedTheme);
+      this.loadBgImage(storedTheme);
     } else {
       applyPreferedTheme(darkModeMediaQuery as unknown as MediaQueryListEvent);
-      darkModeMediaQuery.addEventListener('change', applyPreferedTheme);      
+      darkModeMediaQuery.addEventListener('change', applyPreferedTheme);
     }
   }
 

@@ -1,7 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
 
 type theme = 'light' | 'dark';
 
@@ -16,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild('menuContainer') menuContainer!: ElementRef;
 
-  currentTheme: theme = 'light';
+  currentTheme = signal<'light' | 'dark'>('light');
 
   dropDownOpen = false;
 
@@ -24,10 +23,9 @@ export class HeaderComponent implements OnInit {
   private themeService: ThemeService = inject(ThemeService);
 
   ngOnInit(): void {
-    this.themeService.getTheme().subscribe(theme => {
-      this.currentTheme = theme;
-    });
+    this.currentTheme.set(this.themeService.getTheme());
   }
+
 
 
   // Toggle the menu

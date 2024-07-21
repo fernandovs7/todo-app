@@ -2,8 +2,8 @@
   <i class="bi bi-clipboard-check app-logo text-white dark:text-gray-300"></i>
   <h1 class="text-white dark:text-gray-200 font-bold">TO-DO APP</h1>
   <div class="dark-mode__container ms-auto self-start relative inline-block" (click)="toggleMenu()" #menuContainer>
-    <i *ngIf="currentTheme === 'dark'" class="bi bi-moon-stars-fill text-blue-400 text-lg"></i>
-    <i *ngIf="currentTheme !== 'dark'" class="bi bi-brightness-high-fill text-[#eab308] text-lg"></i>
+    <i *ngIf="currentTheme() === 'dark'" class="bi bi-moon-stars-fill text-blue-400 text-lg"></i>
+    <i *ngIf="currentTheme() !== 'dark'" class="bi bi-brightness-high-fill text-[#eab308] text-lg"></i>
     <div
       class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 transform opacity-0 scale-95"
       [ngClass]="{ 'opacity-100 scale-100': dropDownOpen, 'opacity-0 scale-95': !dropDownOpen }" role="menu"
