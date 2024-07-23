@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit {
     this.currentTheme.set(this.themeService.getTheme());
   }
 
-
-
   // Toggle the menu
   toggleMenu(): void {
     this.dropDownOpen = !this.dropDownOpen;
@@ -35,6 +33,7 @@ export class HeaderComponent implements OnInit {
 
   themeChange(theme: theme): void {
     this.themeService.setTheme(theme);
+    this.currentTheme.set(theme);
   }
 
   // Close the menu when clicking outside
